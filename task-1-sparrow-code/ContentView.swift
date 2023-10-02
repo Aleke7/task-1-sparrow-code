@@ -5,16 +5,24 @@ struct ContentView: View {
         TabView {
             VStack {
                 ScrollView(.vertical) {
-                    VStack {
-                        ForEach(0..<100) {_ in
-                            Spacer()
+                    GeometryReader { geometry in
+                        VStack {
+                            ForEach(0..<30) { index in
+                                Spacer()
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity)
                 }
-                RoundedRectangle(cornerSize: .zero)
-                    .frame(height: 50)
-                    .foregroundColor(.red)
+                .overlay(
+                    VStack {
+                        Spacer()
+                        Rectangle()
+                            .frame(height: 50)
+                            .foregroundColor(.red)
+                    }
+                    
+                )
             }
             .tabItem {
                 Label("First", systemImage: "star.fill")
